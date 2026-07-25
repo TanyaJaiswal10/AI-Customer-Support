@@ -1,0 +1,18 @@
+# Setup Python logging.
+# Log to logs/app.log.
+# Use INFO level.
+# Create a logger instance that can be imported in other files.
+import logging
+import os
+LOG_DIR = "logs"
+LOG_FILE = "app.log"
+os.makedirs(LOG_DIR, exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(os.path.join(LOG_DIR, LOG_FILE)),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
